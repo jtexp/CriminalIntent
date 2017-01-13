@@ -198,6 +198,17 @@ public class CrimeFragment extends Fragment {
         });
 
         mPhotoView = (ImageView) v.findViewById(R.id.crime_photo);
+        mPhotoView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mPhotoFile == null || mPhotoFile.getPath() == null) {
+                    return;
+                }
+
+                Intent intent = ImageActivity.newIntent(getActivity(), Uri.parse(mPhotoFile.getPath()));
+                ImageActivity.startWithTransition(getActivity(), intent, mPhotoView);
+            }
+        });
         updatePhotoView();
 
         return v;
